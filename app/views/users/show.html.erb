@@ -1,6 +1,6 @@
 <h1>These are the events you've created</h1>
 
-
-  <% @user.each do |event| %>
+<%= current_user.email %>
+  <% @users.each do |event| %>
     <%= render event %>
   <% end %>
