@@ -5,8 +5,13 @@ Rails.application.routes.draw do
   end
   
   devise_for :users
-  resources :events
   resources :users
+  resources :events do
+    resources :enrollments, only: [:new, :create, :destroy]
+    member do
+      get 'attend'
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   

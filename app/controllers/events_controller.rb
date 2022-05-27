@@ -59,6 +59,17 @@ class EventsController < ApplicationController
     end
   end
 
+  def attend
+    @event = Event.find(params[:id])
+
+    enrollment = Enrollment.new(attendee_id: current_user.id, attended_event_id: @event.id)
+    if enrollment.save
+      redirect_to @event, notice: "You are now attending this event!"
+    else
+      redirect_to @event, alert: "You are already attending this event!"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
