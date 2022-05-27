@@ -63,7 +63,9 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     enrollment = Enrollment.new(attendee_id: current_user.id, attended_event_id: @event.id)
-    if enrollment.save
+    if @event.attendees.include?(current_user)
+      redirect_to @event, notice: "You're already on the list!"
+    elsif enrollment.save
       redirect_to @event, notice: "You are now attending this event!"
     else
       redirect_to @event, alert: "You are already attending this event!"
