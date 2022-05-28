@@ -1,4 +1,7 @@
 class EnrollmentsController < ApplicationController
+    
+    
+  
     private
 
     def enrollments_params

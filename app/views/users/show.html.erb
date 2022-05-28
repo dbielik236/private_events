@@ -6,10 +6,22 @@
     <br>
   <% end %>
 
-<h1>These are the events you're attending</h1>
-<% current_user.enrollments.each do |enrollment| %>
-    <li><%= Event.find(enrollment.attended_event_id).title %></li>
+
+ <h1>Here are your upcoming events.</h1>
+<% current_user.attended_events.future.each do |event| %>
+    <li><%= event.title %></li>
     <br>
+    
   <% end %>
+
+<h1>These are the events you've attend.</h1>
+<% current_user.attended_events.past.each do |event| %>
+    <li><%= event.title %></li>
+    <br>
+    
+  <% end %>
+
+ 
+
 
   
